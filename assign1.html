@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Student Registration</title>
+  <style>
+    /* ====== Reset ====== */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: Arial, sans-serif;
+      background: #f4f7fa;
+    }
+
+    /* ====== Header & Navigation (Flexbox) ====== */
+    header {
+      background: #2d89ef;
+      color: #fff;
+      padding: 15px 30px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+    }
+
+    header h1 {
+      font-size: 1.5rem;
+    }
+
+    nav ul {
+      list-style: none;
+      display: flex;
+      gap: 20px;
+    }
+
+    nav a {
+      color: white;
+      text-decoration: none;
+      font-weight: bold;
+      transition: color 0.3s;
+    }
+
+    nav a:hover {
+      color: #dfeeff;
+    }
+
+    /* Stack nav vertically on small screens */
+    @media (max-width: 600px) {
+      nav ul {
+        flex-direction: column;
+        margin-top: 10px;
+      }
+    }
+
+    /* ====== Registration Form (CSS Grid) ====== */
+    .form-container {
+      max-width: 600px;
+      background: #fff;
+      margin: 40px auto;
+      padding: 25px 30px;
+      border-radius: 12px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+    }
+
+    .form-container h2 {
+      text-align: center;
+      margin-bottom: 20px;
+      color: #2d89ef;
+    }
+
+    form {
+      display: grid;
+      grid-template-columns: 1fr 2fr;
+      gap: 15px;
+      align-items: center;
+    }
+
+    label {
+      font-weight: bold;
+    }
+
+    input[type="text"],
+    input[type="email"],
+    input[type="password"],
+    select {
+      padding: 8px;
+      border: 1px solid #ccc;
+      border-radius: 6px;
+      width: 100%;
+    }
+
+    .gender {
+      display: flex;
+      gap: 10px;
+    }
+
+    .full-width {
+      grid-column: span 2;
+      text-align: center;
+    }
+
+    button {
+      background: #2d89ef;
+      color: white;
+      padding: 10px 20px;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      font-size: 1rem;
+      transition: background 0.3s; /* Smooth hover */
+    }
+
+    button:hover {
+      background: #1a5fb4;
+    }
+
+    /* Stack form fields on mobile */
+    @media (max-width: 600px) {
+      form {
+        grid-template-columns: 1fr;
+      }
+      .full-width {
+        grid-column: span 1;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Header -->
+  <header>
+    <h1>My Logo</h1>
+    <nav>
+      <ul>
+        <li><a href="#">Home</a></li>
+        <li><a href="#">Courses</a></li>
+        <li><a href="#">Contact</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <!-- Registration Form -->
+  <div class="form-container">
+    <h2>Student Registration</h2>
+    <form>
+      <label for="name">Full Name:</label>
+      <input type="text" id="name" name="name" placeholder="Enter your full name" required>
+
+      <label for="email">Email:</label>
+      <input type="email" id="email" name="email" placeholder="Enter your email" required>
+
+      <label for="course">Course:</label>
+      <select id="course" name="course" required>
+        <option value="">-- Select a Course --</option>
+        <option value="web">Web Development</option>
+        <option value="ml">Machine Learning</option>
+        <option value="ds">Data Science</option>
+      </select>
+
+      <label>Gender:</label>
+      <div class="gender">
+        <input type="radio" id="male" name="gender" value="male">
+        <label for="male">Male</label>
+        <input type="radio" id="female" name="gender" value="female">
+        <label for="female">Female</label>
+      </div>
+
+      <label for="password">Password:</label>
+      <input type="password" id="password" name="password" placeholder="Enter password" required>
+
+      <label for="confirm">Confirm Password:</label>
+      <input type="password" id="confirm" name="confirm" placeholder="Confirm password" required>
+
+      <div class="full-width">
+        <button type="submit">Register</button>
+      </div>
+    </form>
+  </div>
+
+</body>
+</html>
