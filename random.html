@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Random Joke Generator</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #f5f7fa;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      margin: 0;
+    }
+    h1 {
+      color: #333;
+      margin-bottom: 20px;
+    }
+    #joke-box {
+      background: white;
+      border-radius: 12px;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+      padding: 20px;
+      width: 300px;
+      text-align: center;
+      margin-bottom: 15px;
+      transition: all 0.3s ease;
+    }
+    .setup {
+      font-weight: bold;
+      margin-bottom: 10px;
+    }
+    .punchline {
+      color: #007BFF;
+      font-style: italic;
+    }
+    button {
+      background: #007BFF;
+      color: white;
+      border: none;
+      padding: 10px 15px;
+      border-radius: 8px;
+      cursor: pointer;
+      font-size: 16px;
+      margin: 5px;
+      transition: background 0.3s ease;
+    }
+    button:hover {
+      background: #0056b3;
+    }
+    .error {
+      color: red;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>😂 Random Joke Generator</h1>
+
+  <div id="joke-box">
+    <p class="setup">Click "Get Joke" to start!</p>
+    <p class="punchline"></p>
+  </div>
+
+  <button onclick="getJoke()">Get Joke</button>
+  <button onclick="getJoke()">Next Joke</button>
+
+  <script>
+    async function getJoke() {
+      try {
+        const response = await fetch('https://official-joke-api.appspot.com/random_joke');
+        
+        if (!response.ok) {
+          throw new Error("API Error");
+        }
+
+        const jokeData = await response.json();
+        displayJoke(jokeData);
+      } catch (error) {
+        displayJoke({ setup: "Couldn't fetch a joke,", punchline: "try again!" }, true);
+      }
+    }
+
+    function displayJoke(joke, isError = false) {
+      const jokeBox = document.getElementById("joke-box");
+      const setup = jokeBox.querySelector(".setup");
+      const punchline = jokeBox.querySelector(".punchline");
+
+      setup.textContent = joke.setup;
+      punchline.textContent = joke.punchline;
+
+      if (isError) {
+        setup.classList.add("error");
+        punchline.classList.add("error");
+      } else {
+        setup.classList.remove("error");
+        punchline.classList.remove("error");
+      }
+    }
+  </script>
+
+</body>
+</html>
